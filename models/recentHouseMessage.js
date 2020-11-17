@@ -1,12 +1,16 @@
 import mongoose from 'mongoose';
 
 const recentHouseSchema = mongoose.Schema({
-    seviceTitle: String,
+    title: String,
     price : Number,
     location : String,
-    noOfBedroom : String,
-    noOfBirthroom : String,
-    images : [{type: Buffer}]
+    bathroom : String,
+    bedroom : String,
+    roomDetails : String,
+    propertyDetails : String,
+    priceDetails : String,
+    titileImg : Object,
+    images : Object,
 })
 
 const recentHouseMessage = mongoose.model('RecentHouseMessage',recentHouseSchema);
