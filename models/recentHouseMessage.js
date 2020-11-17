@@ -6,10 +6,7 @@ const recentHouseSchema = mongoose.Schema({
     location : String,
     noOfBedroom : String,
     noOfBirthroom : String,
-    titleImage : Buffer,
-    bimage1 : Buffer,
-    bimage2 : Buffer,
-    bimage3 : Buffer
+    images : [{type: Buffer}]
 })
 
 const recentHouseMessage = mongoose.model('RecentHouseMessage',recentHouseSchema);

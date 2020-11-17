@@ -5,14 +5,16 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import recentHouse from './routes/recentHouse.js';
 import booking from './routes/booking.js';
+import fileUpload from 'express-fileupload';
 
 dotenv.config({ path: './config/config.env' });
 
 const app = express();
 
-app.use(bodyParser.json({limit : '30mb', extended: true}));
-app.use(bodyParser.urlencoded({limit : '30mb', extended: true}));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
+app.use(fileUpload());
 
 app.use('/house',recentHouse);
 app.use('/booking',booking);

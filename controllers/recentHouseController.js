@@ -1,5 +1,6 @@
 import recentHouseMessage from '../models/recentHouseMessage.js';
 
+
 export const getRecentHouses = async (req, res) => {
     try {
         const recentHouses = await recentHouseMessage.find();
@@ -9,41 +10,37 @@ export const getRecentHouses = async (req, res) => {
     }
 }
 export const postRecentHouses = async (req, res) => {
-    const { seviceTitle, price, location, noOfBedroom, noOfBirthroom, titleImg, image1, image2, image3 } = req.body;
-    const Image = (Img) => {
-        const newImg = Img.data;
-        const encImg = newImg.toString('base64');
-        const image = {
-            contentType: Img.mimetype,
-            size: Img.size,
-            img: Buffer.from(encImg, 'base64')
-        };
-        return image;
-    }
-    const titleImage = Image(titleImg);
-    const bimage1 = Image(image1);
-    const bimage2 = Image(image2);
-    const bimage3 = Image(image3);
-    
-    const recentHouse = {
-        seviceTitle, 
-        price, 
-        location, 
-        noOfBedroom, 
-        noOfBirthroom,
-        titleImage,
-        bimage1,
-        bimage2,
-        bimage3
-    }
+    const { seviceTitle, price, location, noOfBedroom, noOfBirthroom, images } = req.body;
 
-    const newRecentHouse = new recentHouseMessage(recentHouse)
-    try {
-        await newRecentHouse.save();
-        res.status(201).send(newRecentHouse);
-    } catch (error) {
-        res.status(404).json({ message: error.message });
-    }
+    console.log(req);
+    // const Image = (Img) => {
+    //     const newImg = Img.data;
+    //     const encImg = newImg.toString('base64');
+    //     const image = {
+    //         contentType: Img.mimetype,
+    //         size: Img.size,
+    //         img: Buffer.from(encImg, 'base64')
+    //     };
+    //     return image;
+    // }
+    // const titleImage = Image(titleImg);
+    
+    // const recentHouse = {
+    //     seviceTitle, 
+    //     price, 
+    //     location, 
+    //     noOfBedroom, 
+    //     noOfBirthroom,
+    //     titleImage,
+    // }
+
+    // const newRecentHouse = new recentHouseMessage(recentHouse)
+    // try {
+    //     await newRecentHouse.save();
+    //     res.status(201).send(newRecentHouse);
+    // } catch (error) {
+    //     res.status(404).json({ message: error.message });
+    // }
 }
 
 export const getRecentSingleHouse = async (req, res) => {
